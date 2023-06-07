@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 import { MoviesStore } from './utils/types';
-import { FetchMovies } from './utils/fetchMovies';
-import { FetchMovieDetails } from './utils/fetchMovieDetails';
+import { FetchMovies } from './utils/FetchMovies';
+import { FetchMovieDetails } from './utils/FetchMovieDetails';
 
 const useMoviesStore = create<MoviesStore>((set, get) => ({
   loading: true,
