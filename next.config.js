@@ -2,11 +2,18 @@
 const nextConfig = {
   basePath: '/topratedmovies',
   output: 'export',
-  exportPathMap: async function () {
-    return {
-      '/': { page: '/' },
-      '/movies/[id]': { page: '/movies/[id]' },
-    };
+  generateStaticParams: async () => {
+    return [
+      {
+        route: '/',
+      },
+      {
+        route: '/movies/[id]',
+        params: {
+          id: [/* list of movie IDs */],
+        },
+      },
+    ];
   },
 }
 
