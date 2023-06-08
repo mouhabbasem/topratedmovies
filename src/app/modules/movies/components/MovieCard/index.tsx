@@ -1,7 +1,5 @@
-"use client";
 import React from 'react';
-import { useRouter } from 'next/navigation';
-
+import Link from 'next/link';
 interface MovieCardProps {
   movie: {
     id: number;
@@ -13,12 +11,6 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/movies/${movie.id}`);
-  };
-
   return (
     <div className="bg-gray-800 text-white rounded-lg overflow-hidden shadow-lg flex flex-col">
       <div className="w-full h-56 flex items-center justify-center">
@@ -43,12 +35,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           <p className="text-xs mb-4">Release Date: {movie.release_date}</p>
           <p className="text-sm text-gray-400 line-clamp-3">{movie.overview}</p>
         </div>
-        <button
-          onClick={handleClick}
-          className="bg-blue-500 hover:bg-blue-700 text-white text-sm py-2 px-4 rounded w-full mt-4"
-        >
-          View Details
-        </button>
+        <Link className="bg-blue-500 hover:bg-blue-700 text-white text-sm py-2 px-4 rounded w-full mt-4 block text-center" href={`/movies/${movie.id}`}>View Details</Link>
       </div>
     </div>
   );
