@@ -43,7 +43,7 @@ const useMoviesStore = create<MoviesStore>((set, get) => ({
   },
   loadMoreMovies: () => {
     set((state) => ({ page: state.page + 1, loadingMore: true }));
-    FetchMovies(get().page + 1, get().searchTerm, get().data) // Pass the existing data as the third argument
+    FetchMovies(get().page, get().searchTerm, get().data) // Pass the existing data as the third argument
       .then((updatedData) => {
         set({ loadingMore: false, data: updatedData });
       })
