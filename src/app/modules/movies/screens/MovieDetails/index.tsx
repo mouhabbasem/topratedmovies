@@ -19,8 +19,24 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
     return <PageSkeleton />;
   }
 
+  // Handle retry to fetch if something went wrong!
+  const RetryFetch = () => {
+    fetchMovieDetails(movieId);
+  }
+
   if (error) {
-    return <p className="mt-20 text-white">Something went wrong!</p>;
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <p className="mt-20">Something went wrong!</p>
+        <button
+          type="button"
+          onClick={RetryFetch}
+          className="h-12 w-56 uppercase py-2.5 px-5 mt-5 text-sm font-medium text-gray-900-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700   dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        >
+          Retry
+        </button>
+      </div>
+    );
   }
 
   if (movieDetails === null) {
@@ -38,7 +54,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
       <Breadcrumb routes={routes} />
       <div className="bg-black py-5 text-white">
         <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/3">
+          <div className="md:w-1/3 mb-4">
             {
               movieDetails.poster_path
               ? <img
